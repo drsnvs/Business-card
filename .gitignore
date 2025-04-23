@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 contactConfig.js
-*.js
+# *.js
 # src/App.tsx
