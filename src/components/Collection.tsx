@@ -253,8 +253,7 @@ const Collection = () => {
         <p>Loading images...</p>
       ) : (
         <div
-          className={`${dresses.length > 9 ? 'max-h-[80vh] overflow-y-auto pr-2' : ''
-            }`}
+          className={`${dresses.length > 9 ? 'max-h-[80vh] overflow-y-auto pr-2' : ''}`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {dresses.map((dress) => (
@@ -267,7 +266,7 @@ const Collection = () => {
                   <img
                     src={dress.image}
                     alt={dress.title}
-                    className="w-full h-full object-cover" // keep cropped style
+                    className="w-full h-full object-cover object-top" // Grid images are cropped (keep as it is)
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
@@ -280,15 +279,21 @@ const Collection = () => {
         </div>
       )}
 
-
       {/* Modal Section */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={closeModal}>
-          <div className="relative max-w-3xl max-h-[90vh] overflow-hidden">
-            <img src={selectedImage} alt="Selected" className="object-contain w-full h-full" />
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div className="relative p-4">
+            <img
+              src={selectedImage}
+              alt="Selected"
+              className="object-contain max-w-[90vw] max-h-[90vh]"
+            />
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-white bg-red-500 rounded-full p-2"
+              className="absolute top-2 right-2 text-white bg-red-500 rounded-full p-2"
             >
               ✖
             </button>
