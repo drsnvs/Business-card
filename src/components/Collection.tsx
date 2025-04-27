@@ -217,7 +217,7 @@ interface Dress {
 const Collection = () => {
   const [dresses, setDresses] = useState<Dress[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(6); // Initially show 6 images
+  const [visibleCount, setVisibleCount] = useState(6); // Start with 6 images
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -246,21 +246,11 @@ const Collection = () => {
     fetchImages();
   }, []);
 
-  const closeModal = () => setSelectedImage(null);
-
-  // Function to extract the file name (without underscores and extension)
-  const getFileName = (imageUrl: string) => {
-    const imageParts = imageUrl.split('/');
-    const fileName = imageParts[imageParts.length - 1]; // Get the file name
-    const nameWithoutExtension = fileName.split('.')[0]; // Remove extension
-    const nameWithoutUnderscore = nameWithoutExtension.split('_')[0]; // Remove anything after the first underscore
-    return nameWithoutUnderscore;
-  };
-
-  // Handle show more functionality
   const loadMoreImages = () => {
-    setVisibleCount(visibleCount + 3); // Show 3 more images
+    setVisibleCount((prevCount) => prevCount + 3); // Show 3 more images
   };
+
+  const closeModal = () => setSelectedImage(null);
 
   return (
     <div className="container mx-auto py-8">
@@ -286,26 +276,48 @@ const Collection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
                     <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
-                    <p className="text-white text-sm">{getFileName(dress.image)}</p> {/* Displaying only file name without underscores and extension */}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      )}
 
-          {/* Show More Button */}
-          {visibleCount < dresses.length && (
-            <div className="flex justify-center mt-6">
-            {visibleCount < dresses.length && (
-              <button
-                onClick={loadMoreImages}
-                className="bg-primary-600 text-white py-3 px-8 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out hover:bg-primary-500 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-400"
+      {/* Show More Button */}
+      {visibleCount < dresses.length && (
+        <div className="flex justify-center mt-6">
+          <button onClick={loadMoreImages} className="button">
+            <span>Show More</span>
+            <div className="button__icon-wrapper">
+              <svg
+                className="button__icon-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
               >
-                Show More
-              </button>
-            )}
-          </div>       
-          )}
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 9.293a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 13.586l4.707-4.707z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <svg
+                className="button__icon-svg button__icon-svg--copy"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M14.707 9.293a1 1 0 011.414 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 13.586l4.707-4.707z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </button>
         </div>
       )}
 
@@ -333,6 +345,67 @@ const Collection = () => {
           </div>
         </div>
       )}
+
+      {/* Embedded CSS */}
+      <style>
+        {`
+          .button {
+            line-height: 1;
+            text-decoration: none;
+            display: inline-flex;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: #6366f1; /* Example color */
+            color: #fff;
+            border-radius: 10rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            padding-left: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s;
+          }
+
+          .button__icon-wrapper {
+            flex-shrink: 0;
+            width: 25px;
+            height: 25px;
+            position: relative;
+            color: #6366f1; /* Example color */
+            background-color: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+          }
+
+          .button:hover {
+            background-color: #000; /* Changes background color to black on hover */
+          }
+
+          .button:hover .button__icon-wrapper {
+            color: #000; /* Changes the icon color to black on hover */
+          }
+
+          .button__icon-svg--copy {
+            position: absolute;
+            transform: translate(-150%, 150%);
+          }
+
+          .button:hover .button__icon-svg:first-child {
+            transition: transform 0.3s ease-in-out;
+            transform: translate(150%, -150%);
+          }
+
+          .button:hover .button__icon-svg--copy {
+            transition: transform 0.3s ease-in-out 0.1s;
+            transform: translate(0);
+          }
+        `}
+      </style>
     </div>
   );
 };
