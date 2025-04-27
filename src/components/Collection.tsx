@@ -247,11 +247,14 @@ const Collection = () => {
 
   const closeModal = () => setSelectedImage(null);
 
-  // Function to extract the image name from the URL
+  // Function to optimize the image URL for better performance
+  const getOptimizedImageUrl = (imageUrl: string) => {
+    return imageUrl.replace('/upload/', '/upload/w_auto,q_auto/');
+  };
+
   const getImageName = (imageUrl: string) => {
     const imageParts = imageUrl.split('/');
-    const imageName = imageParts[imageParts.length - 1]; // Get the last part of the URL (image file name)
-    return imageName;
+    return imageParts[imageParts.length - 1];
   };
 
   return (
@@ -271,9 +274,10 @@ const Collection = () => {
               >
                 <div className="relative h-[400px] w-full">
                   <img
-                    src={dress.image}
+                    src={getOptimizedImageUrl(dress.image)} // Optimized URL
                     alt={dress.title}
-                    className="w-full h-full object-cover object-top" // Grid images are cropped (keep as it is)
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy" // Lazy load
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
@@ -298,7 +302,7 @@ const Collection = () => {
             onClick={(e) => e.stopPropagation()} // Prevent click on image from closing modal
           >
             <img
-              src={selectedImage}
+              src={getOptimizedImageUrl(selectedImage)} // Optimized URL
               alt="Selected"
               className="object-contain max-w-[90vw] max-h-[90vh]"
             />
