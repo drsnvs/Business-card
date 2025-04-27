@@ -26,3 +26,5 @@ contactConfig.js
 # *.js
 # src/App.tsx
 .cloud/.env
+# Local Netlify folder
+.netlify
