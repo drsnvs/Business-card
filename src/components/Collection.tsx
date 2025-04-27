@@ -151,7 +151,7 @@
 //       try {
 //         const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/${folderName}.json`);
 //         const data = await res.json();
-        
+
 //         const formattedDresses = data.resources.map((item: any) => ({
 //           id: item.public_id,
 //           title: item.public_id.split('/').pop().replace(/_/g, ' '), // Create title from filename
@@ -252,28 +252,34 @@ const Collection = () => {
       {dresses.length === 0 ? (
         <p>Loading images...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dresses.map((dress) => (
-            <div
-              key={dress.id}
-              className="rounded-lg overflow-hidden border border-transparent hover:border-yellow-400 hover:shadow-yellow-400/30 hover:shadow-md transition-all duration-500 cursor-pointer"
-              onClick={() => setSelectedImage(dress.image)}
-            >
-              <div className="relative h-[400px] w-full">
-                <img
-                  src={dress.image}
-                  alt={dress.title}
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
-                  <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
-                  <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
+        <div
+          className={`${dresses.length > 9 ? 'max-h-[80vh] overflow-y-auto pr-2' : ''
+            }`}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dresses.map((dress) => (
+              <div
+                key={dress.id}
+                className="rounded-lg overflow-hidden border border-transparent hover:border-yellow-400 hover:shadow-yellow-400/30 hover:shadow-md transition-all duration-500 cursor-pointer"
+                onClick={() => setSelectedImage(dress.image)}
+              >
+                <div className="relative h-[400px] w-full">
+                  <img
+                    src={dress.image}
+                    alt={dress.title}
+                    className="w-full h-full object-cover object-top" // keep cropped style
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+                    <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
+                    <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
+
 
       {/* Modal Section */}
       {selectedImage && (
