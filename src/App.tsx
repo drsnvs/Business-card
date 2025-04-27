@@ -15,7 +15,7 @@ function App() {
     // Simulate a loading time (for example, fetching data)
     setTimeout(() => {
       setIsLoading(false); // After 3 seconds, loading completes
-    }, 3000);
+    }, 5173);
   }, []);
 
   return (

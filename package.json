@@ -7,12 +7,19 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.14.1",
+    "@cloudinary/url-gen": "^1.21.0",
     "@emailjs/browser": "^4.1.0",
     "@react-three/drei": "^9.88.0",
     "@react-three/fiber": "^8.15.11",
+    "axios": "^1.9.0",
+    "cloudinary": "^2.6.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "framer-motion": "^10.18.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
