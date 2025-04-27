@@ -275,7 +275,7 @@ const Collection = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
-                    <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
+                    <h3 className="text-white text-xl font-serif font-bold">{dress.title.split(' ')[0]}</h3>
                   </div>
                 </div>
               </div>
