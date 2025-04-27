@@ -247,41 +247,31 @@ const Collection = () => {
 
   const closeModal = () => setSelectedImage(null);
 
-  const formatImageTitle = (publicId: string): string => {
-    // Split the public_id into parts and remove file extension if needed
-    const imageName = publicId.split('/').pop() || '';
-    const title = imageName.split('.')[0]; // Remove file extension
-    // Replace underscores with spaces and capitalize the first letter of each word
-    return title.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-  };
-
   return (
     <div className="container mx-auto py-8">
       {dresses.length === 0 ? (
         <p>Loading images...</p>
       ) : (
-        <div className="overflow-x-auto scroll-smooth py-4">
-          <div className="flex space-x-4">
-            {dresses.map((dress) => (
-              <div
-                key={dress.id}
-                className="rounded-lg overflow-hidden border border-transparent hover:border-yellow-400 hover:shadow-yellow-400/30 hover:shadow-md transition-all duration-500 cursor-pointer"
-                onClick={() => setSelectedImage(dress.image)}
-              >
-                <div className="relative h-[400px] w-[300px]">
-                  <img
-                    src={dress.image}
-                    alt={dress.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
-                    <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
-                    <h3 className="text-white text-xl font-serif font-bold">{formatImageTitle(dress.id)}</h3>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dresses.map((dress) => (
+            <div
+              key={dress.id}
+              className="rounded-lg overflow-hidden border border-transparent hover:border-yellow-400 hover:shadow-yellow-400/30 hover:shadow-md transition-all duration-500 cursor-pointer"
+              onClick={() => setSelectedImage(dress.image)}
+            >
+              <div className="relative h-[400px] w-full">
+                <img
+                  src={dress.image}
+                  alt={dress.title}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+                  <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
+                  <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
 
