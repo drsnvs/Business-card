@@ -285,7 +285,10 @@ const Collection = () => {
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
           onClick={closeModal}
         >
-          <div className="relative p-4">
+          <div
+            className="relative p-4 animate-fadeIn"
+            onClick={(e) => e.stopPropagation()} // Prevent click on image from closing modal
+          >
             <img
               src={selectedImage}
               alt="Selected"

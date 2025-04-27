@@ -7,7 +7,6 @@ export default {
         gold: '#d4af37',
         navy: '#0a1428',
         'light-blue': '#eef2f7',
-        // Color ramps
         primary: {
           50: '#eef2ff',
           100: '#e0e7ff',
@@ -38,6 +37,16 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+      },
+      // 🚀 NEW ANIMATION PART
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.3s ease-out forwards',
       },
     },
   },
