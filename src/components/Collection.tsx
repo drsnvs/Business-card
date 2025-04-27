@@ -247,6 +247,13 @@ const Collection = () => {
 
   const closeModal = () => setSelectedImage(null);
 
+  // Function to extract the image name from the URL
+  const getImageName = (imageUrl: string) => {
+    const imageParts = imageUrl.split('/');
+    const imageName = imageParts[imageParts.length - 1]; // Get the last part of the URL (image file name)
+    return imageName;
+  };
+
   return (
     <div className="container mx-auto py-8">
       {dresses.length === 0 ? (
@@ -271,6 +278,7 @@ const Collection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
                     <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
+                    <p className="text-white text-sm">{getImageName(dress.image)}</p> {/* Displaying only image name */}
                   </div>
                 </div>
               </div>
