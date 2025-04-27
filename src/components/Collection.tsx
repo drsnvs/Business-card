@@ -217,6 +217,7 @@ interface Dress {
 const Collection = () => {
   const [dresses, setDresses] = useState<Dress[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(6); // Initially show 6 images
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -247,14 +248,15 @@ const Collection = () => {
 
   const closeModal = () => setSelectedImage(null);
 
-  // Function to optimize the image URL for better performance
-  const getOptimizedImageUrl = (imageUrl: string) => {
-    return imageUrl.replace('/upload/', '/upload/w_auto,q_auto/');
-  };
-
-  const getImageName = (imageUrl: string) => {
+  // Function to extract the file name from the image URL
+  const getFileName = (imageUrl: string) => {
     const imageParts = imageUrl.split('/');
     return imageParts[imageParts.length - 1];
+  };
+
+  // Handle show more functionality
+  const loadMoreImages = () => {
+    setVisibleCount(visibleCount + 3); // Show 3 more images
   };
 
   return (
@@ -266,7 +268,7 @@ const Collection = () => {
           className={`${dresses.length > 9 ? 'max-h-[80vh] overflow-y-auto pr-2' : ''}`}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dresses.map((dress) => (
+            {dresses.slice(0, visibleCount).map((dress) => (
               <div
                 key={dress.id}
                 className="rounded-lg overflow-hidden border border-transparent hover:border-yellow-400 hover:shadow-yellow-400/30 hover:shadow-md transition-all duration-500 cursor-pointer"
@@ -274,20 +276,31 @@ const Collection = () => {
               >
                 <div className="relative h-[400px] w-full">
                   <img
-                    src={getOptimizedImageUrl(dress.image)} // Optimized URL
+                    src={dress.image}
                     alt={dress.title}
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy" // Lazy load
+                    className="w-full h-full object-cover object-top" // Grid images are cropped (keep as it is)
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
                     <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
-                    <p className="text-white text-sm">{getImageName(dress.image)}</p> {/* Displaying only image name */}
+                    <p className="text-white text-sm">{getFileName(dress.image)}</p> {/* Displaying only file name */}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Show More Button */}
+          {visibleCount < dresses.length && (
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={loadMoreImages}
+                className="bg-primary-500 text-white py-2 px-6 rounded-md shadow-lg hover:bg-primary-600 transition-all duration-300"
+              >
+                Show More
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -302,7 +315,7 @@ const Collection = () => {
             onClick={(e) => e.stopPropagation()} // Prevent click on image from closing modal
           >
             <img
-              src={getOptimizedImageUrl(selectedImage)} // Optimized URL
+              src={selectedImage}
               alt="Selected"
               className="object-contain max-w-[90vw] max-h-[90vh]"
             />
