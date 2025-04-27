@@ -12,15 +12,15 @@ const Footer = () => {
         </div>
         
         <div className="flex justify-center space-x-6 mb-8">
-          <a href="#" className="text-light-blue hover:text-gold transition-colors">
+          <a href="https://www.instagram.com/jigar_______.02/" className="text-light-blue hover:text-gold transition-colors">
             <Instagram className="w-6 h-6" />
           </a>
-          <a href="#" className="text-light-blue hover:text-gold transition-colors">
+          <a href="https://www.facebook.com/sondagar.jigar.9" className="text-light-blue hover:text-gold transition-colors">
             <Facebook className="w-6 h-6" />
           </a>
-          <a href="#" className="text-light-blue hover:text-gold transition-colors">
+          {/* <a href="#" className="text-light-blue hover:text-gold transition-colors">
             <Twitter className="w-6 h-6" />
-          </a>
+          </a> */}
         </div>
         
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8 text-center">

@@ -71,9 +71,9 @@ const BusinessCard = () => {
               transition={{ delay: 0.8 }}
               className="flex items-center space-x-4"
             >
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-light-blue hover:text-gold transition-colors">
+              <a href="http://maps.app.goo.gl/d7njcwBQeUTRrkQeA" target="_blank" rel="noopener noreferrer" className="flex items-center text-light-blue hover:text-gold transition-colors">
                 <MapPin className="w-5 h-5 mr-2" />
-                <span>123 Fashion Street, Design District, CA 90210</span>
+                <span>Soni ni chali, G I D C Industrial Area, Odhav, Ahmedabad, Gujarat 382415</span>
               </a>
             </motion.div>
           </div>
@@ -94,9 +94,9 @@ const BusinessCard = () => {
               <a href="https://www.facebook.com/sondagar.jigar.9" className="text-white hover:text-gold transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white hover:text-gold transition-colors">
+              {/* <a href="#" className="text-white hover:text-gold transition-colors">
                 <Twitter className="w-6 h-6" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
