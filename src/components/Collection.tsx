@@ -248,10 +248,13 @@ const Collection = () => {
 
   const closeModal = () => setSelectedImage(null);
 
-  // Function to extract the file name from the image URL
+  // Function to extract the file name (without underscores and extension)
   const getFileName = (imageUrl: string) => {
     const imageParts = imageUrl.split('/');
-    return imageParts[imageParts.length - 1];
+    const fileName = imageParts[imageParts.length - 1]; // Get the file name
+    const nameWithoutExtension = fileName.split('.')[0]; // Remove extension
+    const nameWithoutUnderscore = nameWithoutExtension.split('_')[0]; // Remove anything after the first underscore
+    return nameWithoutUnderscore;
   };
 
   // Handle show more functionality
@@ -283,7 +286,7 @@ const Collection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
                     <h3 className="text-white text-xl font-serif font-bold">{dress.title}</h3>
-                    <p className="text-white text-sm">{getFileName(dress.image)}</p> {/* Displaying only file name */}
+                    <p className="text-white text-sm">{getFileName(dress.image)}</p> {/* Displaying only file name without underscores and extension */}
                   </div>
                 </div>
               </div>
