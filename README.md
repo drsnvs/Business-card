@@ -70,8 +70,8 @@ Open `index.html` in a browser and try submitting the contact form. You should r
 You can upload a screenshot in `assets/screenshot.png` and use this line to show it here:
 
 ```markdown
-![Preview](assets/screenshot.png)
+https://shreeharicreation.netlify.app
 ```
 
-Made with ❤️ for personal branding.
+Made with ❤️ for Darshan Sarvaiya.
 
