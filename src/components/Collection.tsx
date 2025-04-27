@@ -296,13 +296,16 @@ const Collection = () => {
           {/* Show More Button */}
           {visibleCount < dresses.length && (
             <div className="flex justify-center mt-6">
-              <button
-                onClick={loadMoreImages}
-                className="bg-primary-500 text-white py-2 px-6 rounded-md shadow-lg hover:bg-primary-600 transition-all duration-300"
-              >
-                Show More
-              </button>
+              {visibleCount < dresses.length && (
+                <button
+                  onClick={loadMoreImages}
+                  className="bg-gradient-to-r from-primary-500 to-accent-500 text-white py-3 px-8 rounded-full shadow-xl transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-600"
+                >
+                  Show More
+                </button>
+              )}
             </div>
+
           )}
         </div>
       )}
