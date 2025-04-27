@@ -267,7 +267,7 @@ const Collection = () => {
                   <img
                     src={dress.image}
                     alt={dress.title}
-                    className="w-full h-full object-cover object-top" // keep cropped style
+                    className="w-full h-full object-cover" // keep cropped style
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
                     <span className="text-gold text-sm font-medium mb-1">{dress.category}</span>
