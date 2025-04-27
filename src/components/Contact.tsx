@@ -145,7 +145,7 @@ const Contact: React.FC<ContactProps> = ({ companyName, phone, email, address, b
           icon={<MapPin className="w-6 h-6" />}
           title="Address"
           content={address}
-          link="https://maps.google.com"
+          link="https://maps.app.goo.gl/d7njcwBQeUTRrkQeAcom"
           delay={0.3}
         />
         
